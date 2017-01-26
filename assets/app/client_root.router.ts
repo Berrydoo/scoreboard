@@ -4,8 +4,8 @@ import {EditTeamsComponent} from "./edit-teams.component";
 
 
 const APP_ROUTES:Routes = [
-    {path:'', redirectTo:'/keepscore', pathMatch:'full' },
-    {path:'keepscore', component:ScoreboardContainerComponent},
+    {path:'', redirectTo:'/keepScore', pathMatch:'full' },
+    {path:'keepScore', component:ScoreboardContainerComponent},
     {path:'editTeams', component:EditTeamsComponent}
 ];
 
