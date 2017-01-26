@@ -1,0 +1,8 @@
+<!--<button type="button" class="btn btn-primary" (click)="addPlayer()">+</button>-->
+<div class="horizontal-scroll" >
+    <ul class="list-group horizontal-list" >
+        <li class="list-group-item" *ngFor="let player of team.players">
+            <player [player]="player" [team]="team" ></player>
+        </li>
+    </ul>
+</div>

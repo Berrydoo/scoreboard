@@ -1,0 +1,221 @@
+<form class="form">
+    <div class="row">
+        <div class="col-md-2">
+            Game Name
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="gameName" placeholder="Game name" name="game.gameName" [(ngModel)]="game.gameName" />
+        </div>
+        <div class="col-md-4 col-md-offset-2">
+            <input type="text" class="form-control" id="gameDay" placeholder="Game Day" name="game.gateDate" [(ngModel)]="game.gameDate" />
+        </div>
+    </div>
+    <hr/>
+    <div class="row form-group" >
+        <div class="col-md-2" >
+            <label for="teamName1">Team 1</label>
+        </div>
+        <div class="col-md-4" >
+            <input type="text"
+                   class="form-control"
+                   id="teamName1"
+                   [(ngModel)]="game.teams[0].teamName"
+                   name="game.team[0].teamName"
+                   placeholder="Enter the name of Team 1" />
+        </div>
+        <div class="col-md-2" >
+            <label for="teamName2">Team 2</label>
+        </div>
+        <div class="col-md-4" >
+            <input type="text"
+                   class="form-control"
+                   id="teamName2"
+                   [(ngModel)]="game.teams[1].teamName"
+                   name="game.team[1].teamName"
+                   placeholder="Enter the name of Team 2" />
+        </div>
+    </div>
+    <div class="row form-group" >
+        <div class="col-md-2" >
+            <label>Team 1 Players</label>
+        </div>
+        <div class="col-md-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team1Player1Name"
+                   [(ngModel)]="game.teams[0].players[0].playerName"
+                   name="game.teams[0].players[0].playerName"
+                   placeholder="Player 1 name" />
+        </div>
+        <div class="col-md-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team1Player1Jersey"
+                   [(ngModel)]="game.teams[0].players[0].jerseyNumber"
+                   name="game.teams[0].players[0].jerseyNumber"
+                   placeholder="Player 1 number" />
+        </div>
+        <div class="col-md-2" >
+            <label>Team 2 Players</label>
+        </div>
+        <div class="col-md-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team2Player1Name"
+                   [(ngModel)]="game.teams[1].players[0].playerName"
+                   name="game.teams[1].players[0].playerName"
+                   placeholder="Player 1 name" />
+        </div>
+        <div class="col-md-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team2Player1Jersey"
+                   [(ngModel)]="game.teams[1].players[0].jerseyNumber"
+                   name="game.teams[1].players[0].jerseyNumber"
+                   placeholder="Player 1 number" />
+        </div>
+    </div>
+    <div class="row form-group" >
+        <div class="col-md-2 col-md-offset-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team1Player2Name"
+                   [(ngModel)]="game.teams[0].players[1].playerName"
+                   name="game.teams[0].players[1].playerName"
+                   placeholder="Player 2 name" />
+        </div>
+        <div class="col-md-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team1Player2Jersey"
+                   [(ngModel)]="game.teams[0].players[1].jerseyNumber"
+                   name="game.teams[0].players[1].jerseyNumber"
+                   placeholder="Player 2 number" />
+        </div>
+
+        <div class="col-md-2 col-md-offset-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team2Player2Name"
+                   [(ngModel)]="game.teams[1].players[1].playerName"
+                   name="game.teams[1].players[1].playerName"
+                   placeholder="Player 2 name" />
+        </div>
+        <div class="col-md-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team2Player2Jersey"
+                   [(ngModel)]="game.teams[1].players[1].jerseyNumber"
+                   name="game.teams[1].players[1].jerseyNumber"
+                   placeholder="Player 2 number" />
+        </div>
+    </div>
+    <div class="row form-group" >
+        <div class="col-md-2 col-md-offset-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team1Player3Name"
+                   [(ngModel)]="game.teams[0].players[2].playerName"
+                   name="game.teams[0].players[2].playerName"
+                   placeholder="Player 3 name" />
+        </div>
+        <div class="col-md-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team1Player3Jersey"
+                   [(ngModel)]="game.teams[0].players[2].jerseyNumber"
+                   name="game.teams[0].players[2].jerseyNumber"
+                   placeholder="Player 3 number" />
+        </div>
+
+        <div class="col-md-2 col-md-offset-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team2Player3Name"
+                   [(ngModel)]="game.teams[1].players[2].playerName"
+                   name="game.teams[1].players[2].playerName"
+                   placeholder="Player 3 name" />
+        </div>
+        <div class="col-md-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team2Player3Jersey"
+                   [(ngModel)]="game.teams[1].players[2].jerseyNumber"
+                   name="game.teams[1].players[2].jerseyNumber"
+                   placeholder="Player 3 number" />
+        </div>
+    </div>
+    <div class="row form-group" >
+        <div class="col-md-2 col-md-offset-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team1Player4Name"
+                   [(ngModel)]="game.teams[0].players[3].playerName"
+                   name="game.teams[0].players[3].playerName"
+                   placeholder="Player 4 name" />
+        </div>
+        <div class="col-md-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team1Player4Jersey"
+                   [(ngModel)]="game.teams[0].players[3].jerseyNumber"
+                   name="game.teams[0].players[3].jerseyNumber"
+                   placeholder="Player 4 number" />
+        </div>
+
+        <div class="col-md-2 col-md-offset-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team2Player4Name"
+                   [(ngModel)]="game.teams[1].players[3].playerName"
+                   name="game.teams[1].players[3].playerName"
+                   placeholder="Player 4 name" />
+        </div>
+        <div class="col-md-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team2Player4Jersey"
+                   [(ngModel)]="game.teams[1].players[3].jerseyNumber"
+                   name="game.teams[1].players[3].jerseyNumber"
+                   placeholder="Player 4 number" />
+        </div>
+    </div>
+    <div class="row form-group" >
+        <div class="col-md-2 col-md-offset-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team1Player5Name"
+                   [(ngModel)]="game.teams[0].players[4].playerName"
+                   name="game.teams[0].players[4].playerName"
+                   placeholder="Player 5 name" />
+        </div>
+        <div class="col-md-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team1Player5Jersey"
+                   [(ngModel)]="game.teams[0].players[4].jerseyNumber"
+                   name="game.teams[0].players[4].jerseyNumber"
+                   placeholder="Player 5 number" />
+        </div>
+
+        <div class="col-md-2 col-md-offset-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team2Player5Name"
+                   [(ngModel)]="game.teams[1].players[4].playerName"
+                   name="game.teams[1].players[4].playerName"
+                   placeholder="Player 5 name" />
+        </div>
+        <div class="col-md-2" >
+            <input type="text"
+                   class="form-control"
+                   id="team2Player5Jersey"
+                   [(ngModel)]="game.teams[1].players[4].jerseyNumber"
+                   name="game.teams[1].players[4].jerseyNumber"
+                   placeholder="Player 5 number" />
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="saveGame()">Save</button>
+</form>
+<hr/>
+<pre>{{ game | json}}</pre>
