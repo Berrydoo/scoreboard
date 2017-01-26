@@ -1,8 +1,9 @@
 
 import {Component, OnInit} from "@angular/core";
-import {Team, Game, Shot} from "./games/game.model";
+import {Game, Shot} from "./games/game.model";
 import {GameService} from "./games/game.service";
-import {Form} from "@angular/forms";
+import { FormGroup, Validators, FormControl} from "@angular/forms";
+
 @Component({
     selector: 'scoreboard',
     templateUrl:'scoreboard.component.html',
@@ -15,6 +16,13 @@ import {Form} from "@angular/forms";
             width: 100%;
             height: 100vh;
         }
+        
+        .table>tbody>tr>td {
+            border-top: 0;
+        }
+        .topAlign {
+            vertical-align: top;
+        }
     `]
 })
 export class ScoreboardComponent implements OnInit {
@@ -22,12 +30,37 @@ export class ScoreboardComponent implements OnInit {
     currentGame:Game;
     mouseClick:MouseEvent;
     displayValue:string = 'none';
-    playerIndex:number;
+
+    myForm:FormGroup;
+    teamIndex:FormControl;
+    playerIndex:FormControl;
+    points:FormControl;
+    madeIt:FormControl;
+
+
 
     constructor( private gameService:GameService){}
 
     ngOnInit(){
         this.currentGame = this.gameService.getCurrentGame();
+        this.createFormControls();
+        this.createForm();
+    }
+
+    createFormControls(){
+        this.teamIndex = new FormControl('', Validators.required );
+        this.playerIndex = new FormControl('', Validators.required );
+        this.points = new FormControl('', Validators.required );
+        this.madeIt = new FormControl('', Validators.required );
+    }
+
+    createForm(){
+        this.myForm = new FormGroup({
+            teamIndex: this.teamIndex,
+            playerIndex: this.playerIndex,
+            points: this.points,
+            madeIt: this.madeIt
+        });
     }
 
     registerClick( clickEvent:MouseEvent ){
@@ -35,23 +68,18 @@ export class ScoreboardComponent implements OnInit {
         this.displayValue = 'block';
     }
 
-    setPlayerIndex( index:number ){
-        this.playerIndex = index;
-    }
+    saveShot(){
+        const svg = document.querySelector('svg');
+        let mouseClickPosition = svg.createSVGPoint();
+        mouseClickPosition.x = this.mouseClick.clientX;
+        mouseClickPosition.y = this.mouseClick.clientY;
 
-    saveShot(f:Form){
-        let svg = document.querySelector('svg');
-        let position = svg.createSVGPoint();
-        position.x = this.mouseClick.clientX;
-        position.y = this.mouseClick.clientY;
+        const matrix = svg.getScreenCTM();
+        let svgCoord = mouseClickPosition.matrixTransform(matrix.inverse());
 
-        let matrix = svg.getScreenCTM();
-        let correct = position.matrixTransform(matrix.inverse());
-
-        let shot:Shot = new Shot( parseInt(f.value.teamIndex), this.playerIndex,  parseInt(f.value.points),  (f.value.madeIt == "true") , correct.x, correct.y);
+        let shot:Shot = new Shot( this.myForm.value['teamIndex'], this.myForm.value['playerIndex'],  this.myForm.value['points'],  this.myForm.value['madeIt'], svgCoord.x, svgCoord.y);
         this.gameService.registerShot(shot);
 
-        this.playerIndex = null;
         this.hideShotDialogue();
     }
 

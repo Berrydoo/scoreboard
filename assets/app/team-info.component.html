@@ -1,13 +1,12 @@
 <div>
     <ul class="list-group">
-        <li class="list-group-item" *ngIf="isEditing == false">
-            <p>{{team.teamName}}
-                <!--<i class="glyphicon glyphicon-pencil  pull-right" (click)="editTeamName()"></i>-->
+        <li class="list-group-item">
+            <label>{{team.teamName}}</label>
+            <p>
+                <label>
+                    {{team.score()}} pts
+                </label>
             </p>
-            <p>{{team.score()}} pts</p>
-        </li>
-        <li class="list-group-item" *ngIf="isEditing == true">
-            <p><input type="text" [(ngModel)]="team.teamName" name="team.teamName" id="teamName" placeholder="Team Name" /><i class="glyphicon glyphicon-save" (click)="saveTeamName()"></i></p>
         </li>
     </ul>
 </div>

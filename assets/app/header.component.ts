@@ -4,7 +4,7 @@ import { Component } from "@angular/core";
     selector: 'app-header',
     template: `
     <div class="page-header large-font">
-        <img src="{{imgUrl}}" class="header-image" />
+        <img src="public/images/basketball-1.png" class="header-image" />
         Basketball Scoreboard
     </div>
     `,
@@ -20,5 +20,4 @@ import { Component } from "@angular/core";
 })
 export class HeaderComponent {
 
-    imgUrl:string = 'images/basketball-1.png';
 }

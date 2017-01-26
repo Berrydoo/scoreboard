@@ -3,24 +3,22 @@ import {Team} from "./games/game.model";
 
 @Component({
     selector: 'team-info',
-    templateUrl:'./team-info.component.html',
-    styles:[`
-        input {
-            width: 85%;
-        }
-    `]
+    template:`
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                {{team.teamName}}
+            </h3>        
+        </div>
+        <div class="panel-body">
+            {{ team.score() }}&nbsp;pts<br/>
+            {{ team.numberOfMadeShots()}}/{{ team.numberOfShots()}} ({{team.shotMadePct().toFixed(0)+'%'}})
+        </div>
+    </div>
+    `
 })
 export class TeamInfoComponent {
 
     @Input() team:Team;
-    isEditing:boolean = false;
-
-    editTeamName(){
-        this.isEditing = true;
-    }
-
-    saveTeamName(){
-        this.isEditing = false;
-    }
 
 }

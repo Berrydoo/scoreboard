@@ -4,12 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import {AppComponent} from "./app.component";
 import {HeaderComponent} from "./header.component";
 import {GameService} from "./games/game.service";
-//import {ROUTING} from "./client_root.router";
-import {FormsModule} from "@angular/forms";
+import {ROUTING} from "./client_root.router";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ScoreboardComponent} from "./scoreboard.component";
 import {PlayerListComponent} from "./player-list.component";
 import {PlayerComponent} from "./player.component";
 import {TeamInfoComponent} from "./team-info.component";
+import {ScoreboardContainerComponent} from "./scoreboard-container.component";
+import {EditTeamsComponent} from "./edit-teams.component";
 
 @NgModule({
     declarations: [
@@ -18,12 +20,15 @@ import {TeamInfoComponent} from "./team-info.component";
         ScoreboardComponent,
         PlayerListComponent,
         PlayerComponent,
-        TeamInfoComponent
+        TeamInfoComponent,
+        ScoreboardContainerComponent,
+        EditTeamsComponent
     ],
     imports: [
         BrowserModule,
-        FormsModule
-        // ROUTING
+        ReactiveFormsModule,
+        FormsModule,
+        ROUTING
     ],
     providers: [GameService],
     bootstrap: [AppComponent]

@@ -33,27 +33,12 @@ export class Player{
                     .length;
     }
 
-    numberOfMissedShots(){
-        return this.shots
-                    .filter( shot => !shot.madeIt )
-                    .length;
-    }
-
     shotMadePct(){
         if( this.numberOfShots() == 0 ){
             return 0;
         } else {
             return (this.numberOfMadeShots() / this.numberOfShots()) * 100;
         }
-    }
-
-    shotsSummary(){
-        return {
-            points: this.score(),
-            shotsMade: this.numberOfMadeShots(),
-            shotsMissed: this.numberOfMissedShots(),
-            pctMade: this.shotMadePct()
-        };
     }
 
 }
@@ -67,6 +52,26 @@ export class Team {
         return this.players.reduce( function(cum:number, player:Player ){
             return cum + player.score();
         }, 0);
+    }
+
+    numberOfShots(){
+        return this.players.reduce( function( cum:number, player:Player){
+            return cum + player.numberOfShots();
+        }, 0);
+    }
+
+    numberOfMadeShots() {
+        return this.players.reduce(function (cum: number, player: Player) {
+            return cum + player.numberOfMadeShots();
+        }, 0);
+    }
+
+    shotMadePct(){
+        if( this.numberOfShots() == 0 ){
+            return 0;
+        } else {
+            return (this.numberOfMadeShots() / this.numberOfShots()) * 100;
+        }
     }
 }
 

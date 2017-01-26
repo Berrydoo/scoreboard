@@ -1,6 +1,6 @@
 import {Component, Input} from "@angular/core";
-import {Team, Player, Shot} from "./games/game.model";
-import {GameService} from "./games/game.service";
+import {Team} from "./games/game.model";
+
 
 
 @Component({
@@ -19,6 +19,7 @@ import {GameService} from "./games/game.service";
         .list-group-item {
             padding: 0 5px;
             border: 0;
+            min-width: 150px;
         }
     `]
 })
@@ -26,15 +27,6 @@ export class PlayerListComponent {
 
     @Input() team:Team;
 
-    constructor( private gameService:GameService){}
-
-    addPlayer(){
-
-        let index:number = this.team.players.length + 1;
-        let playerName:string = 'Player ' + index;
-        let player:Player = new Player(playerName, index, new Array<Shot>() );
-        this.gameService.addPlayerToTeam( this.team, player)
-
-    }
+    constructor(){}
 
 }

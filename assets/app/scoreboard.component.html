@@ -115,67 +115,74 @@ c389 945 1019 1821 1796 2494 906 786 1959 1303 3125 1534 289 57 546 90 935
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideShotDialogue()"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Record the shot</h4>
             </div>
-            <form class="form-horizontal" #f="ngForm" >
+            <form class="form" [formGroup]="myForm" novalidate >
                 <div class="modal-body">
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <label>Which team?</label>
-                            <label>
-                                <input type="radio" name="teamIndex" value="0" ngModel checked >{{currentGame.teams[0].teamName}}
-                                <br/>
-                                <input type="radio" name="teamIndex" value="1" ngModel >{{currentGame.teams[1].teamName}}
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <label>Which player?</label>
-                            <ul class="list-group">
-                                <div *ngIf="f.value.teamIndex == 0" >
-                                    <li (click)="setPlayerIndex(i)"
-                                        [ngClass]="{'active':playerIndex == i}"
-                                        class="list-group-item"
-                                        *ngFor="let player of currentGame.teams[0].players; let i = index;">
-                                        <label >
-                                            {{player.playerName}} - {{ player.jerseyNumber}}
-                                        </label>
-                                    </li>
-                                </div>
-                                <div *ngIf="f.value.teamIndex == 1">
-                                    <li (click)="setPlayerIndex(j)"
-                                        [ngClass]="{'active':playerIndex == j}"
-                                        class="list-group-item"
-                                        *ngFor="let player of currentGame.teams[1].players; let j = index;">
+                    <table class="table ">
+                        <tr>
+                            <td class="topAlign">
+                                <label>Which team?</label>
+                            </td>
+                            <td class="topAlign">
+                                <label>
+                                    <input type="radio" name="teamIndex" formControlName="teamIndex" [value]="0" >&nbsp;{{currentGame.teams[0].teamName}}
+                                </label><br/>
+                                <label>
+                                    <input type="radio" name="teamIndex" formControlName="teamIndex" [value]="1" >&nbsp;{{currentGame.teams[1].teamName}}
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="topAlign"><label>Which player?</label></td>
+                            <td class="topAlign" >
+                                <div class="row" *ngIf="teamIndex.value == 0">
+                                    <div class="col-md-4" *ngFor="let pl of currentGame.teams[0].players; let idx = index;">
                                         <label>
-                                            {{player.playerName}} - {{ player.jerseyNumber}}
+                                            <input type="radio" name="playerIndex" [value]="idx" formControlName="playerIndex" >&nbsp;{{ pl.playerName }}: #{{ pl.jerseyNumber}}
                                         </label>
-                                    </li>
+                                    </div>
                                 </div>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <label>How many points?</label>
-                            <input type="radio" name="points" value="1" ngModel >1 point<br/>
-                            <input type="radio" name="points" value="2" ngModel checked>2 points<br/>
-                            <input type="radio" name="points" value="3" ngModel >3 points
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <label>Make the shot?</label>
-                            <label>
-                                <input type="radio" name="madeIt" id="madeItYes" value="true" ngModel checked>Yes - made it<br/>
-                                <input type="radio" name="madeIt" id="madeItNo" value="false" ngModel >No - missed it
-                            </label>
-                        </div>
-                    </div>
+                                <div class="row" *ngIf="teamIndex.value == 1">
+                                    <div class="col-md-4" *ngFor="let pl of currentGame.teams[1].players; let idx = index;">
+                                        <label>
+                                            <input type="radio" name="playerIndex" [value]="idx" formControlName="playerIndex" >&nbsp;{{ pl.playerName }}: #{{ pl.jerseyNumber}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="topAlign"><label>How many points?</label></td>
+                            <td class="topAlign">
+                                <label>
+                                    <input type="radio" name="points" [value]="1" formControlName="points" >&nbsp;1 point
+                                </label><br/>
+                                <label>
+                                    <input type="radio" name="points" [value]="2" formControlName="points" >&nbsp;2 points
+                                </label><br/>
+                                <label>
+                                    <input type="radio" name="points" [value]="3" formControlName="points" >&nbsp;3 points
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="topAlign"><label>Make the shot?</label></td>
+                            <td class="topAlign">
+                                <label>
+                                    <input type="radio" name="madeIt" [value]="true" formControlName="madeIt" >&nbsp;Yes - made it
+                                </label><br/>
+                                <label>
+                                    <input type="radio" name="madeIt" [value]="false" formControlName="madeIt" >&nbsp;No - missed it
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" (click)="hideShotDialogue()" >Close</button>
                     <button type="button" class="btn btn-primary" (click)="saveShot(f)">Save changes</button>
                 </div>
+                <pre>{{myForm.value | json }}</pre>
             </form>
         </div>
     </div>
